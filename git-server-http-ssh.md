@@ -183,6 +183,8 @@ Create a new git user and disable change it's default shell (bash) to a non logi
 sudo useradd -m git
 # ensure that '/usr/bin/git-shell' is listed in the /etc/shells
 sudo usermod -s /usr/bin/git-shell git
+# remember to setup a good password
+sudo passwd git
 ```
 
 Add a necessary folder for the git account in it's home directory.
@@ -217,12 +219,12 @@ You can now access your repositories like this:
 
 ```
 # SSH
-ssh://git@SERVER-IP-ADDRESS/~/git/test.git
+git clone ssh://git@SERVER-IP-ADDRESS/~/git/test.git
 ```
 
 ```
 # HTTP
-http://SERVER-IP-ADDRESS/git/test.git
+git clone http://SERVER-IP-ADDRESS/git/test.git
 ```
 
 Enjoy!
