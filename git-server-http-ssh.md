@@ -180,7 +180,7 @@ sudo systemctl restart apache2
 Create a new git user and disable change it's default shell (bash) to a non login one (git-shell).
 
 ```
-sudo useradd git
+sudo useradd -m git
 # ensure that '/usr/bin/git-shell' is listed in the /etc/shells
 sudo usermod -s /usr/bin/git-shell git
 ```
@@ -217,7 +217,7 @@ You can now access your repositories like this:
 
 ```
 # SSH
-ssh://git@SERVER-IP-ADDRESS/~/git/example.git
+ssh://git@SERVER-IP-ADDRESS/~/git/test.git
 ```
 
 ```
