@@ -1,4 +1,4 @@
-# Installing Git and Apache HTTP Server
+# Setup a Git Server with SSH and Apache HTTP Server
 
 ## Update and upgrade packages
 
