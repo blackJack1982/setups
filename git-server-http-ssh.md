@@ -185,6 +185,8 @@ sudo useradd -m git
 sudo usermod -s /usr/bin/git-shell git
 # remember to setup a good password
 sudo passwd git
+# add your admin account to the git group
+sudo usermod -a -G git YOURUSERADMIN
 ```
 
 Add a necessary folder for the git account in it's home directory.
