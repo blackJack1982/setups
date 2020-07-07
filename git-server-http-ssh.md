@@ -17,11 +17,18 @@ sudo apt install git apache2 apache2-utils
 
 ## Configure Apache HTTP Server for Git
 
+It is time to enable some of the Apache's modules and to create a new configuration file.
+
 ```
 sudo a2enmod env cgi alias rewrite
 sudo mkdir /var/www/git
+```
+
+```
 sudo nano /etc/apache2/sites-available/git.conf
 ```
+
+Add the following to your git.conf file:
 
 ---
 
@@ -59,16 +66,29 @@ sudo nano /etc/apache2/sites-available/git.conf
 
 ---
 
+Remember to change the default configuration file with our new one.
+
 ```
 sudo a2dissite 000-default.conf
 sudo a2ensite git.conf
+```
+
+And restart the Apache service to load them.
+
+```
 sudo systemctl restart apache2
+```
+
+Now we will add a script to easily create a new repository:
+
+```
 sudo nano /usr/local/bin/git-create-repo.sh
 ```
+Add the following to your git-create-repo file:
   
 ---
   
-*git-create-repo.sh*
+*git-create-repo*
 
 ```
 #!/bin/bash
@@ -92,9 +112,16 @@ echo "Git repository '${REPO_NAME}' created in ${GIT_DIR}/${REPO_NAME}.git"
 
 ---
 
+Make the script executable and try it.
+
 ```
 sudo chmod +x /usr/local/bin/git-create-repo.sh
 sudo git-create-repo.sh test
+```
+
+Test that git functionalities are working.
+
+```
 git clone http://SERVER-IP-ADDRESS/git/test.git
 cd test/
 echo "Hello World" > hello
@@ -105,17 +132,19 @@ git push origin
 
 ## Configure User Authentication
 
+To add proper authentication for our users we need to edit our Apache configuration file again.
+
 ```  
 sudo nano /etc/apache2sites-available/git.conf
 ```
-  
+
+Add the following to your git.conf file:
+
 ---
 
 *git.conf*
 
-```
-<VirtualHost *:80>
-  
+```  
   ...
  
   <LocationMatch /git/.*\.git>
@@ -133,9 +162,16 @@ sudo nano /etc/apache2sites-available/git.conf
 
 ---
 
+To add new users to the git.passwd db we can use the htpasswd command.
+
 ```
 sudo htpasswd -c /etc/apache2/git.passwd USERNAME
 # remove -c to add other users to the db
+```
+
+And restart the Apache service again, because we changed the configurations.
+
+```
 sudo systemctl restart apache2
 ```
   
@@ -175,7 +211,7 @@ sudo ufw allow http
 sudo ufw enable
 ```
 
-## The End!
+## The End
 
 You can now access your repositories like this:
 ```
@@ -187,3 +223,5 @@ ssh://git@SERVER-IP-ADDRESS/~/git/example.git
 # HTTP
 http://SERVER-IP-ADDRESS/git/test.git
 ```
+
+Enjoy!
