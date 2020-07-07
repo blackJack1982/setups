@@ -214,6 +214,7 @@ sudo ufw enable
 ## The End
 
 You can now access your repositories like this:
+
 ```
 # SSH
 ssh://git@SERVER-IP-ADDRESS/~/git/example.git
