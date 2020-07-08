@@ -23,8 +23,10 @@ This command will create two new keys into the current directory.
 
 ## Copying the public key to the server
 
+To copy your public key inside the USERNAME's ~/.ssh/authorized_keys file.
+
 ```
-ssh-copy-id USERNAME@SERVER-IP-ADDRESS
+ssh-copy-id -i ~/.ssh/KEYNAME.pub USERNAME@SERVER-IP-ADDRESS
 ```
 
 Enjoy!
