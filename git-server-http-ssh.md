@@ -135,7 +135,7 @@ git push origin
 To add proper authentication for our users we need to edit our Apache configuration file again.
 
 ```  
-sudo nano /etc/apache2sites-available/git.conf
+sudo nano /etc/apache2/sites-available/git.conf
 ```
 
 Add the following to your git.conf file:
